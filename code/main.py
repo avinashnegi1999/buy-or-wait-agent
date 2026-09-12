@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import Data  # noqa: E402
 from engine import State  # noqa: E402
 from images import extract_amounts  # noqa: E402
-from planner import decide  # noqa: E402
+from planner import decide, fmt_amt, option_schedule  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -83,8 +83,8 @@ def validate(rows, requests, data):
             assert abs(sum(float(p.split(":")[1]) for p in parts) - R) < 0.011
         if row["recommended_payment_method"] == "installments":
             opts = data.options_by_request[row["request_id"]]
-            n = len(row["payment_plan"].split("|"))
-            assert any(int(o["number_of_payments"]) == n and o["payment_method"] == "installments" for o in opts)
+            assert any(o["payment_method"] == "installments" and row["payment_plan"] ==
+                       "|".join(f"{on.isoformat()}:{fmt_amt(a)}" for on, a in option_schedule(o)) for o in opts), row
         if row["spending_changes_needed"] != "none":
             for ch in row["spending_changes_needed"].split("|"):
                 eid = ch.split(":")[1]

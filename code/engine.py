@@ -382,11 +382,17 @@ class State:
         return out
 
     def safe_today(self, changes=None):
-        low = min(b for _, b, _ in self.path(changes))
+        p = self.path(changes)
+        if any(b < self.min_bal - 1e-9 for _, b, _ in p):
+            return 0.0  # already breaching without any payment
+        # a payment today is made after today's credits land, so use today's end-of-day balance
+        low = min([p[0][2]] + [b for _, b, _ in p[1:]])
         return max(0.0, low - self.min_bal)
 
     def earliest_full(self, amount, changes=None):
         p = self.path(changes)
+        if any(b < self.min_bal - 1e-9 for _, b, _ in p):
+            return None  # a later payment cannot repair an earlier breach
         # suffix minima of intraday lows after day i, plus end-of-day balance on day i
         suf = [0.0] * (len(p) + 1)
         suf[len(p)] = float("inf")
@@ -431,6 +437,4 @@ class State:
                     key = (saving, n, [c[0].ref_event for c in combo])
                     if best is None or key < best[0]:
                         best = (key, combo, changes)
-            if best:
-                break
         return best

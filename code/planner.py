@@ -1,5 +1,6 @@
 """Enumerate candidate payment plans, verify them deterministically, rank per the spec."""
 from datetime import timedelta
+from decimal import Decimal, ROUND_DOWN
 
 from data import d, f
 
@@ -49,7 +50,7 @@ def decide(st, data):
     max_months = int(max_months) if max_months else 0
     allows_partial = req["allows_partial_payment"].strip().lower() == "true"
 
-    safe = min(R, st.safe_today())
+    safe = float(Decimal(str(min(R, st.safe_today()))).quantize(Decimal("0.01"), rounding=ROUND_DOWN))
     earliest = st.earliest_full(R)
     plans = []
 
@@ -97,6 +98,8 @@ def decide(st, data):
         return (not completes, bool(pl.changes), round(pl.total, 2), pl.payments[0][0], len(pl.payments),
                 pl.option["payment_option_id"] if pl.option else "")
 
+    # hard requirements: complete by the deadline and survive a full replay with the payments applied
+    plans = [pl for pl in plans if pl.payments[-1][0] <= deadline and st.is_safe(pl.payments, pl.change_map)]
     plans.sort(key=rank)
     chosen = plans[0] if plans else None
 
@@ -189,6 +192,6 @@ def explain(st, pl, status, safe, R, earliest, deadline):
         return (f"{extra} {n} installments of {money(cur, amt)}, starting {longdate(pl.payments[0][0])}. "
                 f"This leaves at least {mn} available.")
     if pl.method == "wait":
-        return (f"Pay {money(cur, R)} in full on {longdate(earliest)}. Paying earlier would take the balance "
-                f"below the {mn} minimum.")
+        return (f"Pay {money(cur, R)} in full on {longdate(earliest)}. Without spending changes, paying in full earlier "
+                f"would take the balance below the {mn} minimum.")
     return ""

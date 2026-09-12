@@ -1,6 +1,6 @@
 # Token usage and cost report
 
-Run: `python code/main.py` over 250 requests in 0.5s.
+Run: `python code/main.py` over 250 requests in 0.6s.
 
 ## Architecture
 
