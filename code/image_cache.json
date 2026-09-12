@@ -1,0 +1,98 @@
+{
+  "image_01": {
+    "amount": 4365000,
+    "basis": "Payslip Aug-2019 net pay IDR 4,365,000 transferred",
+    "currency": "IDR",
+    "model": "manual-transcription"
+  },
+  "image_02": {
+    "amount": 100000,
+    "basis": "Rent receipt: total 2,00,000, received 1,00,000, balance due 1,00,000 (outstanding rent balance)",
+    "currency": "INR",
+    "model": "manual-transcription"
+  },
+  "image_03": {
+    "amount": 41272,
+    "basis": "Bill of supply 27/02/2026 net amount / cash paid 41272.00",
+    "currency": "INR",
+    "model": "manual-transcription"
+  },
+  "image_04": {
+    "amount": 2854,
+    "basis": "Delivered grocery order item bill 2854.00 (delivery line cut off in image)",
+    "currency": "INR",
+    "model": "manual-transcription"
+  },
+  "image_05": {
+    "amount": 822.05,
+    "basis": "Telecom bill: 704.05 due till 06-Feb-2026, 822.05 after; settlement 2026-02-09 is after due date",
+    "currency": "INR",
+    "model": "manual-transcription"
+  },
+  "image_06": {
+    "amount": 1995,
+    "basis": "Grocery tax invoice total 1995.00",
+    "currency": "INR",
+    "model": "manual-transcription"
+  },
+  "image_07": {
+    "amount": 8528,
+    "basis": "Restaurant tax invoice grand total Rs 8528 (PAID)",
+    "currency": "INR",
+    "model": "manual-transcription"
+  },
+  "image_08": {
+    "amount": 15339,
+    "basis": "Maintenance receipt total amount received 15,339.00 on 24-07-2026",
+    "currency": "INR",
+    "model": "manual-transcription"
+  },
+  "image_09": {
+    "amount": 723,
+    "basis": "Water bill receipt total amount received 723.00",
+    "currency": "INR",
+    "model": "manual-transcription"
+  },
+  "image_10": {
+    "amount": 79679.26,
+    "basis": "Large grocery tax invoice total / balance due 79,679.26",
+    "currency": "INR",
+    "model": "manual-transcription"
+  },
+  "image_11": {
+    "amount": 3650,
+    "basis": "Hospital provisional bill amount payable 3650.00, paid 0, balance 3650.00",
+    "currency": "INR",
+    "model": "manual-transcription"
+  },
+  "image_12": {
+    "amount": 33.5,
+    "basis": "Taxi receipt total $33.50 (cash paid 40, change 6.50)",
+    "currency": "USD",
+    "model": "manual-transcription"
+  },
+  "image_13": {
+    "amount": 2298,
+    "basis": "Tote bag order total paid 2,298 incl. taxes, free delivery",
+    "currency": "INR",
+    "model": "manual-transcription"
+  },
+  "image_14": {
+    "amount": 4543,
+    "basis": "Handwritten pharmacy bill total 4543.00 (1500+724+796+550+303+670)",
+    "currency": "INR",
+    "model": "manual-transcription"
+  },
+  "image_15": {
+    "amount": 9968,
+    "basis": "Airline invoice grand total incl taxes 9,968.00",
+    "currency": "INR",
+    "model": "manual-transcription"
+  },
+  "image_16": {
+    "amount": 393.22,
+    "basis": "EV charging invoice total 393.22 paid by wallet",
+    "currency": "INR",
+    "model": "manual-transcription"
+  }
+}
